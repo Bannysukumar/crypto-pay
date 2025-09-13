@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INR ↔ Crypto Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-coins"></i>
+                <span>CryptoPay</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <button class="btn btn-primary" id="login-btn">Login</button>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">INR ↔ Crypto Platform</h1>
+                <p class="hero-subtitle">Seamlessly deposit, withdraw, and transfer between INR and cryptocurrencies</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-large" id="get-started-btn">Get Started</button>
+                    <button class="btn btn-secondary btn-large">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="crypto-cards">
+                    <div class="crypto-card">
+                        <i class="fab fa-bitcoin"></i>
+                        <span>Bitcoin</span>
+                    </div>
+                    <div class="crypto-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>USDT</span>
+                    </div>
+                    <div class="crypto-card">
+                        <i class="fas fa-coins"></i>
+                        <span>BXC</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Platform Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Secure Wallet</h3>
+                    <p>Multi-cryptocurrency wallet with BEP-20 support</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Instant Exchange</h3>
+                    <p>Real-time INR to crypto conversion</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Smart Contracts</h3>
+                    <p>BNB Chain powered secure transactions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Live Prices</h3>
+                    <p>Real-time cryptocurrency pricing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Our Platform</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Secure & Reliable</h3>
+                    <p>Built with enterprise-grade security using Firebase Authentication and Firestore database. All transactions are secured and encrypted.</p>
+                    
+                    <h3>Multi-Crypto Support</h3>
+                    <p>Support for Bitcoin (BTC), USDT (BEP-20), and custom BXC token. Easy conversion between INR and cryptocurrencies.</p>
+                    
+                    <h3>Real-Time Updates</h3>
+                    <p>Live price feeds from CoinGecko/Binance APIs. Auto-refresh balances and prices every 10 seconds.</p>
+                    
+                    <h3>P2P Transfers</h3>
+                    <p>Send money to other users instantly. Support for both INR and cryptocurrency transfers.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h4>—</h4>
+                        <p>Active Users</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>—</h4>
+                        <p>Total Volume</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>—</h4>
+                        <p>Uptime</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Start Trading?</h2>
+            <p>Join thousands of users who trust our platform for their crypto needs</p>
+            <button class="btn btn-primary btn-large" id="cta-get-started">Get Started Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CryptoPay</h3>
+                    <p>Your trusted partner in cryptocurrency trading and management.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CryptoPay. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <h2>Welcome Back</h2>
+                <p>Login to your account</p>
+                <form id="login-form-element">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <a href="#" id="show-signup">Sign up</a>
+                </p>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form" style="display: none;">
+                <h2>Create Account</h2>
+                <p>Join our crypto platform</p>
+                <form id="signup-form-element">
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign Up</button>
+                </form>
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="#" id="show-login">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="config.js"></script>
+    <script src="js/contract-abi.js"></script>
+    <script src="js/bxc-token-abi.js"></script>
+    <script src="js/contract-config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/web3.js"></script>
+    <script src="js/cashfree-config.js"></script>
+    <script src="js/cashfree.js"></script>
+    <script src="landing.js"></script>
+</body>
+</html>

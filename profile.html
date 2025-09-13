@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - INR ↔ Crypto Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-coins"></i>
+                <span>CryptoPay</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="deposit.html" class="nav-link">Deposit</a>
+                <a href="withdraw.html" class="nav-link">Withdraw</a>
+                <a href="send.html" class="nav-link">Send Money</a>
+                <a href="history.html" class="nav-link">History</a>
+                <a href="profile.html" class="nav-link active">Profile</a>
+                <button class="btn btn-secondary" id="logout-btn">Logout</button>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Profile & Settings</h1>
+            <p>Manage your account and preferences</p>
+        </div>
+
+        <div class="profile-content">
+            <!-- Profile Overview -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <i class="fas fa-user"></i>
+                    <h2>Profile Overview</h2>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="user-email">—</h3>
+                        <p class="user-id">User ID: <span id="user-id">-</span></p>
+                        <p class="member-since">Member since: <span id="member-since">-</span></p>
+                    </div>
+                    <button class="btn btn-secondary" id="edit-profile-btn">
+                        <i class="fas fa-edit"></i>
+                        Edit Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Account Details -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <i class="fas fa-info-circle"></i>
+                    <h2>Account Details</h2>
+                </div>
+                <div class="account-details">
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email Address</span>
+                        </div>
+                        <div class="detail-value">
+                            <span id="account-email">—</span>
+                            <button class="btn btn-sm btn-secondary" id="change-email-btn">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-wallet"></i>
+                            <span>Wallet Address</span>
+                        </div>
+                        <div class="detail-value">
+                            <span id="wallet-address">—</span>
+                            <button class="btn btn-sm btn-secondary" id="copy-address-btn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Account Status</span>
+                        </div>
+                        <div class="detail-value">
+                            <span class="status-badge verified">
+                                <i class="fas fa-check-circle"></i>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <i class="fas fa-calendar"></i>
+                            <span>Last Login</span>
+                        </div>
+                        <div class="detail-value">
+                            <span id="last-login">—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <i class="fas fa-lock"></i>
+                    <h2>Security Settings</h2>
+                </div>
+                <div class="security-settings">
+                    <div class="security-item">
+                        <div class="security-info">
+                            <h4>Change Password</h4>
+                            <p>Update your account password</p>
+                        </div>
+                        <button class="btn btn-primary" id="change-password-btn">
+                            <i class="fas fa-key"></i>
+                            Change Password
+                        </button>
+                    </div>
+                    
+                    <div class="security-item">
+                        <div class="security-info">
+                            <h4>Two-Factor Authentication</h4>
+                            <p>Add an extra layer of security</p>
+                        </div>
+                        <button class="btn btn-secondary" id="setup-2fa-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            Setup 2FA
+                        </button>
+                    </div>
+                    
+                    <div class="security-item">
+                        <div class="security-info">
+                            <h4>Login Sessions</h4>
+                            <p>Manage active login sessions</p>
+                        </div>
+                        <button class="btn btn-secondary" id="view-sessions-btn">
+                            <i class="fas fa-desktop"></i>
+                            View Sessions
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <i class="fas fa-cog"></i>
+                    <h2>Preferences</h2>
+                </div>
+                <div class="preferences">
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <h4>Email Notifications</h4>
+                            <p>Receive email alerts for transactions</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="email-notifications" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <h4>Push Notifications</h4>
+                            <p>Receive push notifications</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="push-notifications">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <h4>Auto-refresh Prices</h4>
+                            <p>Automatically refresh crypto prices</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="auto-refresh" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Actions -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h2>Account Actions</h2>
+                </div>
+                <div class="account-actions">
+                    <button class="btn btn-warning" id="deactivate-account-btn">
+                        <i class="fas fa-user-times"></i>
+                        Deactivate Account
+                    </button>
+                    <button class="btn btn-danger" id="delete-account-btn">
+                        <i class="fas fa-trash"></i>
+                        Delete Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-password-modal">&times;</span>
+            <h2>Change Password</h2>
+            <form id="change-password-form">
+                <div class="form-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-new-password">Confirm New Password</label>
+                    <input type="password" id="confirm-new-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Update Password</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="config.js"></script>
+    <script src="js/contract-abi.js"></script>
+    <script src="js/bxc-token-abi.js"></script>
+    <script src="js/contract-config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/web3.js"></script>
+    <script src="js/cashfree-config.js"></script>
+    <script src="js/cashfree.js"></script>
+    <script src="js/network-enforcer.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

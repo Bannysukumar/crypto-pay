@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - INR ↔ Crypto Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-coins"></i>
+                <span>CryptoPay</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="deposit.html" class="nav-link">Deposit</a>
+                <a href="withdraw.html" class="nav-link">Withdraw</a>
+                <a href="send.html" class="nav-link">Send Money</a>
+                <a href="history.html" class="nav-link">History</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <button class="btn btn-secondary" id="logout-btn">Logout</button>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <p>Welcome back! Here's your crypto portfolio overview</p>
+            <div class="wallet-status-container">
+                <span id="wallet-status" class="wallet-status disconnected">Not Connected</span>
+                <span id="network-status" class="network-status">Sepolia Required</span>
+                <button id="connect-wallet-btn" class="btn btn-primary">Connect Wallet</button>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <!-- Balance Cards -->
+            <div class="balance-cards">
+                <div class="balance-card">
+                    <h3>INR Balance</h3>
+                    <p class="balance-amount" id="inr-balance">₹0.00</p>
+                </div>
+                <div class="balance-card">
+                    <h3>BTC Balance</h3>
+                    <p class="balance-amount" id="btc-balance">0.00000000</p>
+                    <p class="balance-inr" id="btc-inr">₹0.00</p>
+                    <p class="live-price" data-crypto="BTC">₹0.00</p>
+                </div>
+                <div class="balance-card">
+                    <h3>USDT Balance</h3>
+                    <p class="balance-amount" id="usdt-balance">0.00</p>
+                    <p class="balance-inr" id="usdt-inr">₹0.00</p>
+                    <p class="live-price" data-crypto="USDT">₹0.00</p>
+                </div>
+                <div class="balance-card">
+                    <h3>BXC Balance</h3>
+                    <p class="balance-amount" id="bxc-balance">0.00</p>
+                    <p class="balance-inr" id="bxc-inr">₹0.00</p>
+                    <p class="live-price" data-crypto="BXC">₹0.00</p>
+                </div>
+            </div>
+            
+            <!-- Live Conversion Section -->
+            <div class="conversion-section">
+                <h2>Live Conversions</h2>
+                <div class="conversion-cards">
+                    <div class="conversion-card">
+                        <h3>INR → Crypto</h3>
+                        <div class="conversion-input">
+                            <input type="number" id="inr-input" placeholder="Enter INR amount" min="0" step="0.01">
+                            <select id="inr-crypto-select">
+                                <option value="BTC">BTC</option>
+                                <option value="USDT">USDT</option>
+                                <option value="BXC">BXC</option>
+                            </select>
+                        </div>
+                        <div class="conversion-result">
+                            <span id="inr-crypto-result">0.00</span>
+                            <span id="inr-crypto-symbol">BTC</span>
+                        </div>
+                    </div>
+                    
+                    <div class="conversion-card">
+                        <h3>Crypto → INR</h3>
+                        <div class="conversion-input">
+                            <input type="number" id="crypto-input" placeholder="Enter crypto amount" min="0" step="0.00000001">
+                            <select id="crypto-type-select">
+                                <option value="BTC">BTC</option>
+                                <option value="USDT">USDT</option>
+                                <option value="BXC">BXC</option>
+                            </select>
+                        </div>
+                        <div class="conversion-result">
+                            <span id="crypto-inr-result">₹0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="navigation-section">
+                <h2>Quick Actions</h2>
+                <div class="nav-cards">
+                    <div class="nav-card" id="deposit-nav">
+                        <i class="fas fa-arrow-down"></i>
+                        <h3>Deposit</h3>
+                        <p>Add INR to your wallet</p>
+                    </div>
+                    <div class="nav-card" id="withdraw-nav">
+                        <i class="fas fa-arrow-up"></i>
+                        <h3>Withdraw</h3>
+                        <p>Withdraw INR to bank</p>
+                    </div>
+                    <div class="nav-card" id="send-nav">
+                        <i class="fas fa-paper-plane"></i>
+                        <h3>Send Money</h3>
+                        <p>Transfer to other users</p>
+                    </div>
+                    <div class="nav-card" id="history-nav">
+                        <i class="fas fa-history"></i>
+                        <h3>History</h3>
+                        <p>View transaction history</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="deposit-btn">Deposit INR</button>
+                <button class="btn btn-primary" id="withdraw-btn">Withdraw</button>
+                <button class="btn btn-primary" id="transfer-btn">Transfer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="config.js"></script>
+            <script src="js/contract-abi.js"></script>
+        <script src="js/bxc-token-abi.js"></script>
+        <script src="js/contract-config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/web3.js"></script>
+    <script src="js/cashfree-config.js"></script>
+    <script src="js/cashfree.js"></script>
+    <script src="js/network-enforcer.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

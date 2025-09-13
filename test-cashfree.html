@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Cashfree Script Loading</title>
+</head>
+<body>
+    <h1>Testing Cashfree Script Loading</h1>
+    <div id="status">Loading...</div>
+    <div id="result"></div>
+
+    <script>
+        async function testCashfreeScript() {
+            const statusDiv = document.getElementById('status');
+            const resultDiv = document.getElementById('result');
+            
+            statusDiv.textContent = 'Testing modern Cashfree integration...';
+            
+            // Test the new integration approach
+            try {
+                // Test 1: Try modern SDK loading
+                statusDiv.textContent = 'Testing modern Cashfree SDK...';
+                const script = document.createElement('script');
+                script.src = 'https://sdk.cashfree.com/js/ui/2.0.0/dropinClient.js';
+                script.type = 'text/javascript';
+                
+                const scriptPromise = new Promise((resolve, reject) => {
+                    script.onload = () => resolve('Modern SDK loaded');
+                    script.onerror = () => reject('Modern SDK failed');
+                    setTimeout(() => reject('Modern SDK timeout'), 8000);
+                });
+                
+                document.head.appendChild(script);
+                const result = await scriptPromise;
+                
+                // Check if Cashfree class is available
+                if (typeof Cashfree !== 'undefined') {
+                    statusDiv.textContent = '✅ Modern SDK working!';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Modern SDK Success!</h3>
+                        <p>${result}</p>
+                        <p>Cashfree class available: Yes</p>
+                        <p>Cashfree object type: ${typeof Cashfree}</p>
+                        <p>✅ Cashfree SDK is working!</p>
+                    `;
+                    return;
+                } else {
+                    throw new Error('SDK loaded but Cashfree class not found');
+                }
+                
+            } catch (error) {
+                console.log('Modern SDK failed:', error);
+                
+                // Test 2: Try alternative CDNs
+                statusDiv.textContent = 'Modern SDK failed, trying alternative CDNs...';
+                
+                const alternativeUrls = [
+                    'https://unpkg.com/@cashfree/cashfree-js@latest/dist/cashfree.js',
+                    'https://cdn.jsdelivr.net/npm/@cashfree/cashfree-js@latest/dist/cashfree.js'
+                ];
+                
+                for (let i = 0; i < alternativeUrls.length; i++) {
+                    try {
+                        const url = alternativeUrls[i];
+                        statusDiv.textContent = `Trying alternative CDN ${i + 1}: ${url}`;
+                        
+                        const altScript = document.createElement('script');
+                        altScript.src = url;
+                        altScript.type = 'text/javascript';
+                        
+                        const altPromise = new Promise((resolve, reject) => {
+                            altScript.onload = () => resolve('Alternative CDN loaded');
+                            altScript.onerror = () => reject('Alternative CDN failed');
+                            setTimeout(() => reject('Alternative CDN timeout'), 8000);
+                        });
+                        
+                        document.head.appendChild(altScript);
+                        const altResult = await altPromise;
+                        
+                        if (typeof window.Cashfree !== 'undefined') {
+                            statusDiv.textContent = '✅ Alternative CDN working!';
+                            resultDiv.innerHTML = `
+                                <h3>✅ Alternative CDN Success!</h3>
+                                <p>${altResult}</p>
+                                <p>Working URL: ${url}</p>
+                                <p>Cashfree class available: Yes</p>
+                                <p>Cashfree object type: ${typeof window.Cashfree}</p>
+                                <p>✅ Cashfree SDK is working!</p>
+                            `;
+                            return;
+                        }
+                        
+                    } catch (altError) {
+                        console.log(`Alternative CDN ${i + 1} failed:`, altError);
+                    }
+                }
+                
+                // All methods failed
+                statusDiv.textContent = '❌ All integration methods failed';
+                resultDiv.innerHTML = `
+                    <h3>❌ Integration Failed</h3>
+                    <p>All Cashfree integration methods failed:</p>
+                    <ul>
+                        <li>Modern SDK: Failed</li>
+                        <li>NPM CDN: Failed</li>
+                        <li>jsDelivr CDN: Failed</li>
+                    </ul>
+                    <p><strong>Solution:</strong> The application will use a mock payment system for testing.</p>
+                    <p><strong>Note:</strong> This is normal during development. In production, you'll need to:</p>
+                    <ul>
+                        <li>Contact Cashfree for current SDK URLs</li>
+                        <li>Use their official integration documentation</li>
+                        <li>Implement server-side payment processing</li>
+                    </ul>
+                `;
+            }
+        }
+        
+        // Start test when page loads
+        window.addEventListener('load', testCashfreeScript);
+    </script>
+</body>
+</html>

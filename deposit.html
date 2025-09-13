@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit - INR ↔ Crypto Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-coins"></i>
+                <span>CryptoPay</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="deposit.html" class="nav-link active">Deposit</a>
+                <a href="withdraw.html" class="nav-link">Withdraw</a>
+                <a href="send.html" class="nav-link">Send Money</a>
+                <a href="history.html" class="nav-link">History</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <button class="btn btn-secondary" id="logout-btn">Logout</button>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Deposit Funds</h1>
+            <p>Add INR or cryptocurrency to your wallet</p>
+        </div>
+
+        <div class="deposit-content">
+            <!-- INR Deposit Section -->
+            <div class="deposit-section">
+                <div class="section-header">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h2>INR Deposit</h2>
+                </div>
+                <div class="deposit-card">
+                    <p class="deposit-info">Deposit INR using secure payment methods</p>
+                    <div class="amount-input">
+                        <label for="inr-amount">Amount (INR)</label>
+                        <input type="number" id="inr-amount" placeholder="Enter amount" min="100" step="100">
+                        <small>Minimum amount: ₹100</small>
+                    </div>
+                    <button class="btn btn-primary btn-full" id="deposit-inr-btn">
+                        <i class="fas fa-credit-card"></i>
+                        Deposit INR via Cashfree
+                    </button>
+                </div>
+            </div>
+
+            <!-- Crypto Deposit Section -->
+            <div class="deposit-section">
+                <div class="section-header">
+                    <i class="fab fa-bitcoin"></i>
+                    <h2>Crypto Deposit</h2>
+                    <button class="btn btn-primary" id="refresh-balances-btn" onclick="refreshCryptoBalances()">
+                        <i class="fas fa-sync-alt"></i> Refresh Balances
+                    </button>
+                </div>
+                
+                <!-- BTC Deposit -->
+                <div class="crypto-deposit-card">
+                    <div class="crypto-header">
+                        <i class="fab fa-bitcoin"></i>
+                        <h3>Bitcoin (BTC)</h3>
+                    </div>
+                    <div class="wallet-info">
+                        <p class="wallet-label">Deposit Address:</p>
+                        <div class="address-container">
+                            <input type="text" id="btc-address" readonly placeholder="BTC deposits not supported on Sepolia">
+                            <button class="btn btn-secondary" id="copy-btc-btn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <small>Send BTC to this address. Minimum: 0.0001 BTC</small>
+                    </div>
+                </div>
+
+                <!-- USDT Deposit -->
+                <div class="crypto-deposit-card">
+                    <div class="crypto-header">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h3>USDT (BEP-20)</h3>
+                    </div>
+                    <div class="wallet-info">
+                        <p class="wallet-label">Deposit Address:</p>
+                        <div class="address-container">
+                            <input type="text" id="usdt-address" readonly placeholder="Loading USDT deposit address...">
+                            <button class="btn btn-secondary" id="copy-usdt-btn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <small>Send USDT to this address. Minimum: 1 USDT</small>
+                    </div>
+                </div>
+
+                <!-- BXC Deposit -->
+                <div class="crypto-deposit-card">
+                    <div class="crypto-header">
+                        <i class="fas fa-coins"></i>
+                        <h3>BXC Token</h3>
+                    </div>
+                    <div class="wallet-info">
+                        <p class="wallet-label">Deposit Address:</p>
+                        <div class="address-container">
+                            <input type="text" id="bxc-address" readonly placeholder="Loading BXC deposit address...">
+                            <button class="btn btn-secondary" id="copy-bxc-btn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <small>Send BXC to this address. Minimum: 10 BXC</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deposit History -->
+            <div class="deposit-section">
+                <div class="section-header">
+                    <i class="fas fa-history"></i>
+                    <h2>Recent Crypto Deposits</h2>
+                </div>
+                <div class="deposit-history" id="crypto-deposit-history">
+                    <!-- Recent crypto deposit data will be loaded here -->
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading recent crypto deposits...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Deposit History -->
+            <div class="deposit-section">
+                <div class="section-header">
+                    <i class="fas fa-stream"></i>
+                    <h2>All Recent Deposits</h2>
+                </div>
+                <div class="deposit-history" id="deposit-history">
+                    <!-- Real transaction data will be loaded here -->
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading recent deposits...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="config.js"></script>
+    <script src="js/contract-abi.js"></script>
+    <script src="js/bxc-token-abi.js"></script>
+    <script src="js/contract-config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/web3.js"></script>
+    <script src="js/cashfree-config.js"></script>
+    <script src="js/cashfree.js"></script>
+    <script src="js/network-enforcer.js"></script>
+    <script src="deposit.js"></script>
+    
+    <style>
+        .loading-state {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .loading-state i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+        
+        .no-transactions {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .no-transactions i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #d1d5db;
+        }
+        
+        .history-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .history-item:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .history-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .history-icon.inr { background: #10b981; }
+        .history-icon.btc { background: #f7931a; }
+        .history-icon.usdt { background: #26a17b; }
+        .history-icon.bxc { background: #6366f1; }
+        
+        .history-details {
+            flex: 1;
+        }
+        
+        .history-details h4 {
+            margin: 0 0 0.5rem 0;
+            color: #1f2937;
+            font-size: 1rem;
+        }
+        
+        .history-details p {
+            margin: 0 0 0.25rem 0;
+            font-weight: 600;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+        
+        .history-details small {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .history-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .history-status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .history-status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .history-status.failed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</body>
+</html>

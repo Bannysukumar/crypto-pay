@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - INR ↔ Crypto Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-coins"></i>
+                <span>CryptoPay</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="deposit.html" class="nav-link">Deposit</a>
+                <a href="withdraw.html" class="nav-link">Withdraw</a>
+                <a href="send.html" class="nav-link">Send Money</a>
+                <a href="history.html" class="nav-link active">History</a>
+                <a href="profile.html" class="nav-link">Profile</a>
+                <button class="btn btn-secondary" id="logout-btn">Logout</button>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Transaction History</h1>
+            <p>View all your transactions and activities</p>
+        </div>
+
+        <div class="history-content">
+            <!-- Statistics Summary -->
+            <div class="stats-summary">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Total Deposits</h3>
+                        <p id="total-deposits">₹0.00</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Total Withdrawals</h3>
+                        <p id="total-withdrawals">₹0.00</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Total Sent</h3>
+                        <p id="total-sent">₹0.00</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Total Received</h3>
+                        <p id="total-received">₹0.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label for="transaction-type">Transaction Type</label>
+                    <select id="transaction-type">
+                        <option value="">All Types</option>
+                        <option value="deposit">Deposit</option>
+                        <option value="withdrawal">Withdrawal</option>
+                        <option value="transfer">Transfer</option>
+                        <option value="send">Send</option>
+                        <option value="receive">Receive</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="currency-filter">Currency</label>
+                    <select id="currency-filter">
+                        <option value="">All Currencies</option>
+                        <option value="INR">INR</option>
+                        <option value="BTC">BTC</option>
+                        <option value="USDT">USDT</option>
+                        <option value="BXC">BXC</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="date-range">Date Range</label>
+                    <select id="date-range">
+                        <option value="7">Last 7 days</option>
+                        <option value="30">Last 30 days</option>
+                        <option value="90">Last 3 months</option>
+                        <option value="365">Last year</option>
+                        <option value="all">All time</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="status-filter">Status</label>
+                    <select id="status-filter">
+                        <option value="">All Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="pending">Pending</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="apply-filters-btn">
+                    <i class="fas fa-filter"></i>
+                    Apply Filters
+                </button>
+            </div>
+
+            <!-- Search -->
+            <div class="search-section">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-transactions" placeholder="Search transactions...">
+                </div>
+                <div class="search-actions">
+                    <button class="btn btn-primary" id="refresh-btn">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                    <button class="btn btn-secondary" id="export-btn">
+                        <i class="fas fa-download"></i>
+                        Export CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Transactions Table -->
+            <div class="transactions-section">
+                <div class="table-header">
+                    <h3>Transactions</h3>
+                    <span class="transaction-count" id="transaction-count">0 transactions</span>
+                </div>
+                
+                <div class="transactions-table">
+                    <div class="table-row header">
+                        <div class="table-cell">Date & Time</div>
+                        <div class="table-cell">Type</div>
+                        <div class="table-cell">Amount</div>
+                        <div class="table-cell">Currency</div>
+                        <div class="table-cell">From/To</div>
+                        <div class="table-cell">Status</div>
+                        <div class="table-cell">Actions</div>
+                    </div>
+                    
+                                        <div class="table-body" id="transactions-body">
+                        <!-- Real-time transactions will be loaded here from Firebase -->
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="btn btn-secondary" id="prev-page" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <div class="page-numbers">
+                        <span class="page-number active">1</span>
+                        <span class="page-number">2</span>
+                        <span class="page-number">3</span>
+                    </div>
+                    <button class="btn btn-secondary" id="next-page">
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script src="config.js"></script>
+    <script src="js/contract-abi.js"></script>
+    <script src="js/bxc-token-abi.js"></script>
+    <script src="js/contract-config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/web3.js"></script>
+    <script src="js/cashfree-config.js"></script>
+    <script src="js/cashfree.js"></script>
+    <script src="js/network-enforcer.js"></script>
+    <script src="history.js"></script>
+</body>
+</html>
